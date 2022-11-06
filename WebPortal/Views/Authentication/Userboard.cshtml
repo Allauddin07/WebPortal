@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebPortal.Models.Order>
+
+
+@*@{
+    ViewData["Title"] = "Userboard";
+}*@
+
+
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                OrderName
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model =>"Order")
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    Order @item.OrderId
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => "Order")
+            </td>*@
+            <td>
+                <a asp-action="GetUserCourse" asp-controller="Home" asp-route-id="@item.OrderId">See ordered Course</a> |
+@*                <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

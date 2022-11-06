@@ -1,0 +1,53 @@
+﻿@model WebPortal.Models.Order
+
+@{
+    ViewData["Title"] = "ChangeStatus";
+}
+
+
+
+<h4>Change Order Status</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-controller="Home" asp-action="ChangeStatus">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OrderId" />
+            <div class="form-group">
+               
+
+
+                <select asp-for="Status"  class="form-select" aria-label="Default select example">
+                    <option selected>@Model.Status</option>
+
+                    @if(Model.Status=="Done"){
+                        <option value="Pending">Pending</option>
+                    }
+                    else{
+                        <option value="Done">Done</option>
+                    }
+
+                    
+                    
+                </select>
+
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Id" class="control-label"></label>*@
+                <input type="hidden" asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Adminboard" asp-controller="Authentication">Back </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
